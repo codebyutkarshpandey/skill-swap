@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<title>Chat Room</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* CHAT CONTAINER */
+
+.chat-container{
+width:400px;
+margin:40px auto;
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(8px);
+border-radius:15px;
+padding:20px;
+}
+
+/* USER HEADER */
+
+.chat-header{
+text-align:center;
+font-size:22px;
+margin-bottom:20px;
+font-weight:bold;
+}
+
+/* MESSAGE AREA */
+
+.chat-messages{
+height:300px;
+overflow-y:auto;
+display:flex;
+flex-direction:column;
+gap:10px;
+padding:10px;
+}
+
+/* MESSAGE BUBBLE */
+
+.message{
+max-width:70%;
+padding:10px;
+border-radius:15px;
+background:white;
+color:black;
+}
+
+/* YOUR MESSAGE */
+
+.you{
+align-self:flex-end;
+background:#ffd700;
+}
+
+/* INPUT AREA */
+
+.chat-input{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.chat-input input{
+flex:1;
+padding:10px;
+border-radius:10px;
+border:none;
+}
+
+.chat-input button{
+padding:10px 15px;
+border:none;
+border-radius:10px;
+background:#ffd700;
+cursor:pointer;
+}
+
+/* TYPING INDICATOR */
+
+.typing{
+font-style:italic;
+opacity:0.7;
+margin:5px;
+}
+
+.dot{
+animation:blink 1.5s infinite;
+}
+
+@keyframes blink{
+
+0%{opacity:0}
+
+50%{opacity:1}
+
+100%{opacity:0}
+
+}
+
+/* MESSAGE ROW */
+
+.message-row{
+display:flex;
+align-items:flex-end;
+gap:8px;
+margin:6px 0;
+}
+
+/* USER AVATAR */
+
+.msg-avatar{
+width:35px;
+height:35px;
+border-radius:50%;
+}
+
+/* MESSAGE BUBBLE */
+
+.message{
+max-width:70%;
+padding:10px;
+border-radius:15px;
+background:white;
+color:black;
+}
+
+/* YOUR MESSAGE */
+
+.you{
+align-self:flex-end;
+background:#ffd700;
+}
+
+/* ALIGNMENT */
+
+.row-you{
+justify-content:flex-end;
+}
+
+.row-user{
+justify-content:flex-start;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2 class="logo" onclick="goToPage('index.html')">SkillSwap</h2>
+
+</header>
+
+<div class="chat-container">
+
+<div class="chat-header">
+
+<img id="userAvatar" class="chat-avatar">
+
+<div id="chatUser"></div>
+
+</div>
+
+<div class="chat-messages" id="messages"></div>
+
+<div class="chat-input">
+
+<input id="msgInput" placeholder="Type message">
+
+<button onclick="sendMessage()">Send</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* GET USER ID FROM URL */
+
+function sendMessage(){
+
+let input=document.a("msgInput")
+let text=input.value
+
+if(text==="") return
+
+let messages=document.getElementById("messages")
+
+/* USER MESSAGE */
+
+let row=document.createElement("div")
+row.className="message-row row-you"
+
+let msg=document.createElement("div")
+msg.className="message you"
+msg.innerText=text
+
+row.appendChild(msg)
+
+messages.appendChild(row)
+
+input.value=""
+
+/* TYPING INDICATOR */
+
+let typing=document.createElement("div")
+typing.className="typing"
+typing.innerText="User is typing..."
+
+messages.appendChild(typing)
+
+/* REPLY */
+
+setTimeout(function(){
+
+typing.remove()
+
+let replyRow=document.createElement("div")
+replyRow.className="message-row row-user"
+
+let avatar=document.createElement("img")
+avatar.className="msg-avatar"
+avatar.src="https://api.dicebear.com/7.x/shapes/svg?seed="+user
+
+let reply=document.createElement("div")
+reply.className="message"
+reply.innerText="Nice! Let's swap skills."
+
+replyRow.appendChild(avatar)
+replyRow.appendChild(reply)
+
+messages.appendChild(replyRow)
+
+},1500)
+
+}
+
+function sendMessage(){
+
+let input = document.getElementById("msgInput");
+let text = input.value;
+
+if(text === "") return;
+
+let messages = document.getElementById("messages");
+
+/* USER MESSAGE */
+
+let row = document.createElement("div");
+row.className = "message-row row-you";
+
+let msg = document.createElement("div");
+msg.className = "message you";
+msg.innerText = text;
+
+row.appendChild(msg);
+messages.appendChild(row);
+
+/* AUTO SCROLL */
+
+messages.scrollTop = messages.scrollHeight;
+
+input.value = "";
+
+/* TYPING INDICATOR */
+
+let typing = document.createElement("div");
+typing.className = "typing";
+typing.innerText = "User is typing...";
+
+messages.appendChild(typing);
+
+/* AUTO SCROLL */
+
+messages.scrollTop = messages.scrollHeight;
+
+/* REPLY */
+
+setTimeout(function(){
+
+typing.remove();
+
+let replyRow = document.createElement("div");
+replyRow.className = "message-row row-user";
+
+let avatar = document.createElement("img");
+avatar.className = "msg-avatar";
+avatar.src = "https://i.pravatar.cc/40";
+
+let reply = document.createElement("div");
+reply.className = "message";
+reply.innerText = "Nice! Let's swap skills.";
+
+replyRow.appendChild(avatar);
+replyRow.appendChild(reply);
+
+messages.appendChild(replyRow);
+
+/* AUTO SCROLL */
+
+messages.scrollTop = messages.scrollHeight;
+
+},1500);
+
+}
+
+</script>
+
+<script src="script.js"></script>
+
+<script>
+
+const params = new URLSearchParams(window.location.search)
+
+const user = params.get("user")
+
+/* USER NAME */
+
+document.getElementById("chatUser").innerText = user
+
+/* USER AVATAR */
+
+document.getElementById("userAvatar").src =
+"https://api.dicebear.com/7.x/shapes/svg?seed=" + user
+
+</script>
+
+</body>
+</html>

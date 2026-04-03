@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<title>Match Result</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* PROFILE CARD */
+
+.profile-card{
+margin-top:20px;
+padding:25px;
+border-radius:15px;
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(8px);
+width:300px;
+margin-left:auto;
+margin-right:auto;
+text-align:center;
+transition:0.3s;
+}
+
+/* HOVER EFFECT */
+
+.profile-card:hover{
+transform:scale(1.05);
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* SKILL TAG */
+
+.skill-tag{
+display:inline-block;
+padding:6px 12px;
+border-radius:20px;
+background:#ffd700;
+color:black;
+margin:5px;
+font-size:14px;
+}
+
+/* MATCH % */
+
+.match-percent{
+font-size:22px;
+font-weight:bold;
+margin-top:10px;
+color:#ffd700;
+}
+
+/* AVATAR */
+
+.avatar{
+width:80px;
+height:80px;
+border-radius:50%;
+margin-bottom:10px;
+border:3px solid gold;
+}
+
+/* CHAT BUTTON */
+
+.chat-btn{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:#ffd700;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+
+.chat-btn:hover{
+transform:scale(1.1);
+background:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2 class="logo" onclick="goToPage('index.html')">SkillSwap</h2>
+
+<nav>
+
+<a onclick="goToPage('index.html')">Home</a>
+<a onclick="goToPage('register.html')">Register</a>
+<a onclick="goToPage('chat.html')">Chat</a>
+<a onclick="goToPage('match.html')">Find Match</a>
+<a onclick="goToPage('profile.html')">My Profile</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<h1>Finding Skill Match...</h1>
+
+<div class="result-box">
+
+<p id="matchText">Checking available users...</p>
+
+<div id="profileArea"></div>
+
+<button class="back-btn" onclick="goToPage('match.html')">
+Try Again
+</button>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+async function findMatch(){
+
+let response = await fetch("http://localhost:5000/api/users");
+let users = await response.json();
+
+/* CHECK USERS */
+
+if(users.length < 2){
+
+document.getElementById("matchText").innerHTML =
+"❌ Not enough users to find a match.";
+
+return;
+
+}
+
+/* CURRENT USER */
+
+let currentUser = users[users.length - 1];
+
+let bestMatch = null;
+let bestPercent = 0;
+
+/* MATCHING */
+
+users.forEach(user => {
+
+if(user._id === currentUser._id) return;
+
+let percent = 0;
+
+if(user.offer === currentUser.want){
+percent += 50;
+}
+
+if(user.want === currentUser.offer){
+percent += 50;
+}
+
+if(percent > bestPercent){
+bestPercent = percent;
+bestMatch = user;
+}
+
+});
+
+/* RESULT */
+
+if(bestMatch){
+
+document.getElementById("matchText").innerHTML =
+"🎉 Match Found!";
+
+document.getElementById("profileArea").innerHTML =
+
+`
+<div class="profile-card">
+
+<img class="avatar"
+src="https://i.pravatar.cc/150?u=${bestMatch.name}">
+
+<h2>${bestMatch.name}</h2>
+
+<div class="match-percent">${bestPercent}% Skill Match</div>
+
+<p>Skills:</p>
+
+<span class="skill-tag">💻 ${bestMatch.offer}</span>
+<span class="skill-tag">🎯 Wants ${bestMatch.want}</span>
+
+<br>
+
+<button class="chat-btn" onclick="startChat('${bestMatch._id}')">
+Start Chat 💬
+</button>
+
+</div>
+`;
+
+}else{
+
+document.getElementById("matchText").innerHTML =
+"❌ No match found.";
+
+}
+
+}
+
+/* START CHAT FUNCTION */
+
+function startChat(userId){
+
+Swal.fire({
+title: "Match Found!",
+text: "Start chatting now 💬",
+icon: "success",
+confirmButtonText: "Chat Now"
+}).then(()=>{
+
+window.location.href = "chat-room.html?user=" + userId;
+
+});
+
+}
+
+/* RUN */
+
+setTimeout(findMatch,1500);
+
+</script>
+
+</body>
+</html>

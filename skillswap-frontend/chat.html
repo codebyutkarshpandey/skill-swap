@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Chat</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* USER LIST */
+
+.user-list{
+margin-top:40px;
+display:flex;
+flex-direction:column;
+gap:15px;
+align-items:center;
+}
+
+/* USER CARD */
+
+.user-card{
+width:250px;
+padding:15px;
+border-radius:12px;
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(6px);
+cursor:pointer;
+transition:0.3s;
+text-align:center;
+font-size:18px;
+}
+
+/* HOVER EFFECT */
+
+.user-card:hover{
+transform:scale(1.1);
+background:#ffd700;
+color:black;
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+</style>
+
+</head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<body>
+
+<header>
+
+<h2 class="logo" onclick="goToPage('index.html')">SkillSwap</h2>
+
+<nav>
+
+<a onclick="goToPage('index.html')">Home</a>
+<a onclick="goToPage('register.html')">Register</a>
+<a onclick="goToPage('match.html')">Find Match</a>
+<a onclick="goToPage('profile.html')">My Profile</a>
+<a onclick="goToPage('chat.html')">Chat</a>
+</nav>
+
+</header>
+
+<div class="container">
+
+<h1>Your Skill Matches</h1>
+
+<div class="user-list" id="userList"></div>
+
+</div>
+
+<script>
+
+function openChat(userId){
+
+window.location.href="chat-room.html?user="+userId
+
+}
+
+let matchedUsers =
+JSON.parse(localStorage.getItem("matchedUsers")) || [];
+
+let userList = document.getElementById("userList");
+
+/* अगर कोई match नहीं है */
+
+if(matchedUsers.length === 0){
+
+userList.innerHTML = "<p>No matches yet. Find a match first.</p>";
+
+}
+
+/* USERS SHOW */
+
+matchedUsers.forEach(user => {
+
+let card = document.createElement("div");
+
+card.className = "user-card";
+
+card.innerText = user.name;
+
+card.onclick = function(){
+openChat(user._id);
+};
+
+userList.appendChild(card);
+
+});
+
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

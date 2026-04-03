@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<title>My Profile</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+<h2 class="logo" onclick="goToPage('index.html')">SkillSwap</h2>
+
+<nav>
+
+<a onclick="goToPage('index.html')">Home</a>
+<a onclick="goToPage('register.html')">Register</a>
+<a onclick="goToPage('match.html')">Find Match</a>
+<a onclick="goToPage('chat.html')">Chat</a>
+<a onclick="goToPage('profile.html')">My Profile</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<h1>My Profile</h1>
+
+<!-- PROFILE DATA JS se aayega -->
+<div id="profile"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+loadProfile();
+</script>
+
+</body>
+</html>

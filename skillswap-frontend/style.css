@@ -1,0 +1,341 @@
+                  
+
+body{
+margin:0;
+font-family:'Poppins', Arial, sans-serif;
+background:linear-gradient(-45deg,#6366f1,#9333ea,#ec4899,#06b6d4);
+background-size:400% 400%;
+animation:gradientMove 12s ease infinite;
+color:white;
+}
+
+@keyframes gradientMove{
+
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+}
+
+/* NAVIGATION */
+
+nav a{
+color:white;
+margin-left:20px;
+text-decoration:none;
+font-weight:bold;
+cursor:pointer;
+transition:0.2s;
+}
+
+nav a:hover{
+opacity:0.8;
+}
+
+/* LOGO */
+
+.logo{
+font-size:28px;
+font-weight:700;
+cursor:pointer;
+background:linear-gradient(45deg,#ffd700,#ffffff,#ffd700);
+background-clip:text;
+-webkit-background-clip:text;
+color:transparent;
+transition:0.3s;
+}
+
+.logo:hover{
+transform:scale(1.1);
+text-shadow:0 0 10px gold;
+}
+
+/* HERO SECTION */
+
+.hero{
+height:80vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+}
+
+.hero-content{
+max-width:700px;
+animation:fadeUp 1s ease;
+}
+
+/* HERO TITLE */
+
+.hero-title{
+font-size:60px;
+font-weight:700;
+line-height:1.2;
+margin-bottom:20px;
+}
+
+.hero-title span{
+background:linear-gradient(45deg,#ffd700,#ffffff,#ffd700);
+background-clip:text;
+-webkit-background-clip:text;
+color:transparent;
+}
+
+/* HERO SUBTITLE */
+
+.hero-subtitle{
+font-size:20px;
+opacity:0.9;
+margin-bottom:30px;
+}
+
+/* GET STARTED BUTTON */
+
+.start-btn{
+padding:14px 36px;
+font-size:18px;
+border:none;
+border-radius:40px;
+background:white;
+color:#6d28d9;
+cursor:pointer;
+transition:all 0.35s ease;
+font-weight:600;
+}
+
+.start-btn:hover{
+transform:translateY(-3px) scale(1.05);
+background:#ffd700;
+color:black;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* MAIN CONTAINER */
+
+.container{
+padding:40px;
+text-align:center;
+}
+
+/* FIND MATCH BUTTON */
+
+.match-btn{
+padding:16px 45px;
+font-size:20px;
+border:none;
+border-radius:40px;
+background:white;
+color:#6d28d9;
+cursor:pointer;
+margin-top:30px;
+transition:0.3s;
+}
+
+.match-btn:hover{
+background:#ffd700;
+color:black;
+transform:scale(1.1);
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* RESULT BOX */
+
+.result-box{
+margin-top:60px;
+padding:30px;
+border-radius:15px;
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(8px);
+-webkit-backdrop-filter:blur(8px);
+font-size:20px;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:#ffd700;
+cursor:pointer;
+margin-top:20px;
+}
+
+/* CHAT HEADER */
+
+.chat-header{
+display:flex;
+flex-direction:column;
+align-items:center;
+margin-bottom:20px;
+gap:6px;
+}
+
+/* CHAT AVATAR */
+
+.chat-avatar{
+width:70px;
+height:70px;
+border-radius:50%;
+border:3px solid gold;
+margin-bottom:8px;
+}
+
+/* CHAT BOX */
+
+.chat-box{
+height:250px;
+border:1px solid white;
+margin-bottom:10px;
+padding:10px;
+overflow-y:auto;
+}
+
+/* PAGE CRUSH ANIMATION */
+
+.page-crush{
+animation:crush 0.6s forwards;
+}
+
+@keyframes crush{
+
+0%{
+transform:scale(1);
+opacity:1;
+}
+
+50%{
+transform:scale(0.9);
+}
+
+100%{
+transform:scale(0);
+opacity:0;
+}
+
+}
+
+/* HERO FADE ANIMATION */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.msg-avatar{
+width:35px;
+height:35px;
+border-radius:50%;
+box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+
+
+/* DELETE PROFILE BUTTON */
+
+.delete-btn{
+padding:14px 32px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:white;
+color:#6d28d9;
+cursor:pointer;
+margin-top:20px;
+transition:0.3s;
+font-weight:600;
+}
+
+.delete-btn:hover{
+background:#ffd700;
+color:black;
+transform:scale(1.08);
+box-shadow:0 6px 15px rgba(0,0,0,0.3);
+}
+/* PROFILE PAGE */
+
+.profile-container{
+display:flex;
+justify-content:center;
+align-items:center;
+margin-top:60px;
+}
+
+/* PROFILE CARD */
+
+.profile-card{
+width:320px;
+padding:30px;
+border-radius:20px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+transition:0.3s;
+}
+
+.profile-card:hover{
+transform:scale(1.05);
+}
+
+/* AVATAR */
+
+.profile-avatar{
+width:90px;
+height:90px;
+border-radius:50%;
+margin-bottom:15px;
+border:3px solid gold;
+}
+
+/* NAME */
+
+.profile-card h2{
+margin:10px 0;
+font-size:24px;
+}
+
+/* TEXT */
+
+.profile-card p{
+margin:8px 0;
+font-size:16px;
+opacity:0.9;
+}
+
+/* DELETE BUTTON */
+
+.delete-btn{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:#ffd700;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+
+.delete-btn:hover{
+background:white;
+transform:scale(1.08);
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}

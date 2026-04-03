@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<title>Register</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* CONTAINER */
+
+.container{
+text-align:center;
+margin-top:80px;
+}
+
+/* INPUT BOXES */
+
+.container input{
+width:320px;
+padding:14px;
+font-size:16px;
+border-radius:10px;
+border:none;
+margin:12px;
+outline:none;
+transition:0.3s;
+}
+
+/* INPUT INTERACTION */
+
+.container input:focus{
+transform:scale(1.05);
+box-shadow:0 0 12px rgba(255,255,255,0.6);
+}
+
+/* REGISTER BUTTON */
+
+.container button{
+padding:14px 40px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:white;
+color:#6d28d9;
+cursor:pointer;
+margin-top:20px;
+transition:0.3s;
+}
+
+/* BUTTON HOVER */
+
+.container button:hover{
+background:#ffd700;
+color:black;
+transform:scale(1.08);
+box-shadow:0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* INTERACTIVE LOGO */
+
+.logo{
+font-size:28px;
+font-weight:700;
+cursor:pointer;
+background:linear-gradient(45deg,#ffffff,#ffd700,#ffffff);
+background-clip:text;
+-webkit-background-clip:text;
+color:transparent;
+transition:0.3s;
+}
+
+.logo:hover{
+transform:scale(1.1);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2 class="logo" onclick="goToPage('index.html')">SkillSwap</h2>
+
+<nav>
+
+<a onclick="goToPage('index.html')">Home</a>
+<a onclick="goToPage('match.html')">Find Match</a>
+<a onclick="goToPage('chat.html')">Chat</a>
+<a onclick="goToPage('register.html')">Register</a>
+<a onclick="goToPage('profile.html')">My Profile</a>
+<a onclick="logout()">Logout</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<h1>Create Profile</h1>
+
+<input id="name" placeholder="Your Name"><br>
+
+<input id="email" placeholder="Email"><br>
+
+<input id="password" type="password" placeholder="Password"><br>
+
+<input id="offer" placeholder="Skill You Offer"><br>
+
+<input id="want" placeholder="Skill You Want"><br>
+
+<button onclick="addUser()">Register</button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
